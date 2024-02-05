@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Main");
                 totalAsteroidsDestroyed = 0;
+                asteroidCount = 0;
+                level = 0;
             }
         }
 
