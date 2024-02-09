@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int totalAsteroidsDestroyed = 0;
     public int level = 0;
     public int lives = 3;
-    public float points = 0;
+    public int points = 0;
     public bool gameIsOver = false;
     public bool gamePaused = false;
 
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        points = totalAsteroidsDestroyed * 150f;
+        points = totalAsteroidsDestroyed * 150;
 
 
         //scene selection
@@ -79,7 +79,12 @@ public class GameManager : MonoBehaviour
             //pause game function for gameplay scene only
             if (Input.GetKeyUp(KeyCode.Escape) && gamePaused == false) {gamePaused = true;} 
             else if (Input.GetKeyUp(KeyCode.Escape) && gamePaused == true) { gamePaused = false;}
+
             Time.timeScale = gamePaused ? 0 : 1;
+
+            //check high score
+            CheckHighScore();
+
         }
     }
 
@@ -156,6 +161,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("end");
 
         yield return null;
+    }
+
+    //high score check
+    private void CheckHighScore() 
+    {        
+        if (points > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", points);
+        }
     }
 
 }
