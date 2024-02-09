@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int totalAsteroidsDestroyed = 0;
     public int level = 0;
     public int lives = 3;
-
+    public float points = 0;
     public bool gameIsOver = false;
     public bool gamePaused = false;
 
@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        points = totalAsteroidsDestroyed * 150f;
+
+
         //scene selection
         if (Input.GetKeyUp("space"))
         {
@@ -132,7 +135,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Respawning");
         
         // Wait a bit before respawning.
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.5f);
 
         // Respawn player.
         Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
@@ -147,7 +150,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         gameIsOver = true;
         // Wait a bit before restarting.
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.5f);
 
         // Restart scene.
         SceneManager.LoadScene("end");

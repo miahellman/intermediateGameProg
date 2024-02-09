@@ -221,6 +221,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6469505706999037029, guid: ca6a12243d255b04f913ea390151d86b, type: 3}
   destroyedParticles: {fileID: 5445206610036788231, guid: 9e5919f4df086a74082f3b1bf456d492, type: 3}
   gameManager: {fileID: 1080289865}
+  invincibilityDuration: 3
+  isInvincible: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1122,26 @@ PrefabInstance:
     - target: {fileID: 2224482534592794576, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5578996145680529546, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
       propertyPath: m_Enabled
