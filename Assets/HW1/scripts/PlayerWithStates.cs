@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class PlayerWithStates : MonoBehaviour
 {
+    //enum to represent player states
+    private enum PlayerState
+    {
+        Alive,
+        Dead
+    }
+
+    private PlayerState currentState = PlayerState.Alive;
+
+    // Your existing variables...
     [Header("player parameters")]
     [SerializeField] private float shipAcceleration = 10f;
     [SerializeField] private float shipMaxVelocity = 10f;
@@ -17,32 +27,41 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem destroyedParticles;
 
     private Rigidbody2D shipRigidbody;
-    private bool isAlive = true;
     private bool isAccelerating = false;
+
+    public GameManager gameManager;
 
     private void Start()
     {
         //initialize player rigidbody
         shipRigidbody = GetComponent<Rigidbody2D>();
-        Vector3 shipStartingPos = transform.position;
     }
 
     private void Update()
     {
-        //if player is alive do [x] function
-        //i assume this could become much more streamlined with a state machine
-
-        if (isAlive)
+        switch (currentState)
         {
-            HandleShipAcceleration();
-            HandleShipRotation();
-            HandleShooting();
+            case PlayerState.Alive:
+                HandleAliveState();
+                break;
+            case PlayerState.Dead:
+                // Handle Dead state
+                break;
+            default:
+                break;
         }
+    }
+
+    private void HandleAliveState()
+    {
+        HandleShipAcceleration();
+        HandleShipRotation();
+        HandleShooting();
     }
 
     private void FixedUpdate()
     {
-        if (isAlive && isAccelerating)
+        if (currentState == PlayerState.Alive && isAccelerating)
         {
             //increase velocity until maxVelocity 
             shipRigidbody.AddForce(shipAcceleration * transform.up);
@@ -58,7 +77,7 @@ public class Player : MonoBehaviour
 
     private void HandleShipRotation()
     {
-        //rotation -- should probs use input system but im just hardcoding -- which is better in this case??
+        //rotation
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Rotate(shipRotationSpeed * Time.deltaTime * transform.forward);
@@ -71,34 +90,38 @@ public class Player : MonoBehaviour
 
     private void HandleShooting()
     {
-        //shooting
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (!gameManager.gamePaused)
         {
-
-            Rigidbody2D bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-
-            Vector2 shipVelocity = shipRigidbody.velocity;
-            Vector2 shipDirection = transform.up;
-            float shipForwardSpeed = Vector2.Dot(shipVelocity, shipDirection);
-
-            //make sure no issues w/ bullet velocity 
-            if (shipForwardSpeed < 0)
+            //shooting
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                shipForwardSpeed = 0;
+
+                Rigidbody2D bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+
+                Vector2 shipVelocity = shipRigidbody.velocity;
+                Vector2 shipDirection = transform.up;
+                float shipForwardSpeed = Vector2.Dot(shipVelocity, shipDirection);
+
+                //make sure no issues w/ bullet velocity 
+                if (shipForwardSpeed < 0)
+                {
+                    shipForwardSpeed = 0;
+                }
+
+                bullet.velocity = shipDirection * shipForwardSpeed;
+
+                //add force to "shoot" bullet
+                bullet.AddForce(bulletSpeed * transform.up, ForceMode2D.Impulse);
             }
-
-            bullet.velocity = shipDirection * shipForwardSpeed;
-
-            //add force to "shoot" bullet
-            bullet.AddForce(bulletSpeed * transform.up, ForceMode2D.Impulse);
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Asteroid"))
         {
-            isAlive = false;
+            currentState = PlayerState.Dead;
 
             GameManager gameManager = FindAnyObjectByType<GameManager>();
 

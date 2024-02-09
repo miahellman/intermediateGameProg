@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb40165374e5b2841825c81d1b2e87ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 5578996145680529546, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
   asteroidPrefab: {fileID: 6355247488048708835, guid: e1b7cdaa7ccaf644096fa3e195218cdb, type: 3}
   asteroidCount: 0
   totalAsteroidsDestroyed: 0
   level: 0
+  lives: 3

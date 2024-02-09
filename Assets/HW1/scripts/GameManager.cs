@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    [SerializeField] private Player playerPrefab;
     [SerializeField] private Asteroid asteroidPrefab;
 
     public int asteroidCount = 0;
-
     public int totalAsteroidsDestroyed = 0;
-
     public int level = 0;
+    public int lives = 3;
+
+    public bool gameIsOver = false;
+    public bool gamePaused = false;
 
     //only one gamemanager!!!
     public static GameManager Instance { get; private set; }
@@ -35,14 +37,22 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //scene selection
-        if (Input.anyKey)
+        if (Input.GetKeyUp("space"))
         {
             if (SceneManager.GetActiveScene().name == "Start")
             {
+                //reset game values + load main scene
                 SceneManager.LoadScene("Main");
                 totalAsteroidsDestroyed = 0;
                 asteroidCount = 0;
                 level = 0;
+                lives = 3;
+                gameIsOver = false;
+            }
+
+            if (SceneManager.GetActiveScene().name == "end")
+            {
+                SceneManager.LoadScene("Start");
             }
         }
 
@@ -62,6 +72,11 @@ public class GameManager : MonoBehaviour
                     SpawnAsteroid();
                 }
             }
+
+            //pause game function for gameplay scene only
+            if (Input.GetKeyUp(KeyCode.Escape) && gamePaused == false) {gamePaused = true;} 
+            else if (Input.GetKeyUp(KeyCode.Escape) && gamePaused == true) { gamePaused = false;}
+            Time.timeScale = gamePaused ? 0 : 1;
         }
     }
 
@@ -96,10 +111,48 @@ public class GameManager : MonoBehaviour
         asteroid.gameManager = this;
     }
 
+    //gameover function -- calls respawn or restart
     public void GameOver()
     {
+        if (lives <= 0)
+        {
+            StartCoroutine(Restart());
+        }
+        else
+        {
+            lives--;
+            StartCoroutine(Respawn());
+        }
+        
+    }
+
+    //respawn coroutine
+    private IEnumerator Respawn()
+    {
+        Debug.Log("Respawning");
+        
+        // Wait a bit before respawning.
+        yield return new WaitForSeconds(3f);
+
+        // Respawn player.
+        Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+
+        yield return null;
+    }
+
+    //gameover coroutine
+    private IEnumerator Restart()
+    {
+        lives = 0;
         Debug.Log("Game Over");
-        SceneManager.LoadScene("Start");
+        gameIsOver = true;
+        // Wait a bit before restarting.
+        yield return new WaitForSeconds(3f);
+
+        // Restart scene.
+        SceneManager.LoadScene("end");
+
+        yield return null;
     }
 
 }
