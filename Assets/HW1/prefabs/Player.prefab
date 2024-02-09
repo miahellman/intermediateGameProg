@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6665336210329707754}
   - component: {fileID: 5578996145680529546}
   - component: {fileID: 6263611960333420711}
+  - component: {fileID: 7282076529542492796}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797136601729342998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e58fe36b23dca7f40aa23f7a276895a8, type: 3}
   m_Name: 
@@ -195,6 +196,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c153813c0c99a4db201d06c00b2cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7282076529542492796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797136601729342998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0eddbdcbed08b240a2c0fc102bca07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipAcceleration: 10
+  shipMaxVelocity: 10
+  shipRotationSpeed: 180
+  bulletSpeed: 8
+  bulletSpawn: {fileID: 4377201911956823090}
+  bulletPrefab: {fileID: 6469505706999037029, guid: ca6a12243d255b04f913ea390151d86b, type: 3}
+  destroyedParticles: {fileID: 5445206610036788231, guid: 9e5919f4df086a74082f3b1bf456d492, type: 3}
+  gameManager: {fileID: 2810945461035877524, guid: c9ec5b7805d729048a059c8db5dc9791, type: 3}
+  invincibilityDuration: 3
+  isInvincible: 1
 --- !u!1 &8886128123350708858
 GameObject:
   m_ObjectHideFlags: 0

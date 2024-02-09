@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &112321382 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4377201911956823090, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-  m_PrefabInstance: {fileID: 7678489320674816709}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139484693
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,33 +191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &265392525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 797136601729342998, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-  m_PrefabInstance: {fileID: 7678489320674816709}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &265392526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265392525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0eddbdcbed08b240a2c0fc102bca07b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipAcceleration: 10
-  shipMaxVelocity: 10
-  shipRotationSpeed: 180
-  bulletSpeed: 8
-  bulletSpawn: {fileID: 112321382}
-  bulletPrefab: {fileID: 6469505706999037029, guid: ca6a12243d255b04f913ea390151d86b, type: 3}
-  destroyedParticles: {fileID: 5445206610036788231, guid: 9e5919f4df086a74082f3b1bf456d492, type: 3}
-  gameManager: {fileID: 1080289865}
-  invincibilityDuration: 3
-  isInvincible: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,37 +1091,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878338808650414499, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5578996145680529546, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 7282076529542492796, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1080289865}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 797136601729342998, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 265392526}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45bcc1a7c109b3408db7f4a674d3f97, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

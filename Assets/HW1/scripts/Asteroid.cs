@@ -16,7 +16,7 @@ public class Asteroid : MonoBehaviour
         //size based movement (bigger = more slow)
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector2 direction = new Vector2(Random.value, Random.value).normalized;
-        float spawnSpeed = Random.Range(4f - size, 5f - size);
+        float spawnSpeed = Random.Range(3f - size, 4f - size);
         rb.AddForce(direction * spawnSpeed, ForceMode2D.Impulse);
 
         //add to asteroid counter
