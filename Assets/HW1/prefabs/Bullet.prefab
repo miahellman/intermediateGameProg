@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc755cfd4f02d941985649a95095f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletLifetime: 0.8
+  bulletLifetime: 1
